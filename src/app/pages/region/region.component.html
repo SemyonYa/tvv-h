@@ -1,0 +1,19 @@
+<div class="wrap" @titleAnimation>
+    <h2> Неизвестная область </h2>
+
+    <p><strong>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti alias et sequi ratione a vero quo
+            incidunt, eaque modi quis voluptate blanditiis ex repudiandae quidem ipsum, quod sint voluptatibus rerum.
+        </strong></p>
+
+    <h4> Населенные пункты </h4>
+
+    <ul>
+        <li *ngFor="let item of [1,2,3,4]">
+            <a [routerLink]="['/place']">Деревня {{item}} </a>
+        </li>
+    </ul>
+
+
+
+</div>

@@ -1,0 +1,85 @@
+.wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    gap: 0;
+
+    & > * {
+        // border: solid 1px red;
+    }
+
+    header {
+        flex: 0 1 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 24px;
+        // box-shadow: 0 0 24px 0 rgba($color: #000000, $alpha: 0.06);
+
+        .btns {
+            img {
+                width: 36px;
+                aspect-ratio: 1;
+                padding: 6px;
+                border-radius: 50%;
+                // box-shadow: 0 0 24px 0 rgba($color: #000000, $alpha: 0.06);
+            }
+        }
+    }
+
+    main {
+        position: relative;
+        flex: 1 1 0;
+        padding: 24px;
+        overflow-y: scroll;
+
+        &::after,
+        &::before {
+            content: "";
+            position: fixed;
+            right: 0;
+            left: 0;
+            height: 12px;
+        }
+        
+        &::before {
+            top: 80px;
+            background: linear-gradient(180deg, white, transparent);
+        }
+        
+        &::after {
+            bottom: 80px;
+            background: linear-gradient(0deg, white, transparent);
+        }
+    }
+
+    footer {
+        flex: 0 1 80px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 24px;
+        // box-shadow: 0 0 24px 0 rgba($color: #000000, $alpha: 0.06);
+    }
+}
+
+.show-hello-btn {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    width: 48px;
+    aspect-ratio: 1;
+    padding: 12px;
+    border-radius: 50%;
+    border: solid 1px #efefef;
+}
+
+.breadcrumbs {
+    font-size: 18px;
+    img {
+        width: 24px;
+        aspect-ratio: 1;
+    }
+}

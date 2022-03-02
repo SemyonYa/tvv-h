@@ -1,0 +1,17 @@
+.projects {
+    max-width: 960px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 24px;
+
+    &-item {
+        flex: 0 1 calc(100% / 3 - 24px);
+        cursor: pointer;
+        
+        img {
+            border-radius: 12px;
+            width: 100%;
+            aspect-ratio: 1;
+        }
+    }
+}
