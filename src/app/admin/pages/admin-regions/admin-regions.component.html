@@ -1,0 +1,9 @@
+<div class="wrap">
+    <h2> Регионы </h2>
+
+    <ul class="regions col">
+        <li *ngFor="let r of [1,2,3,4,5,6]">
+            <a [routerLink]="[r, 'places']"> [REGION {{r}}] </a>
+        </li>
+    </ul>
+</div>

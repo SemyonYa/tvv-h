@@ -10,10 +10,12 @@ const routes: Routes = [
   { path: 'region', component: RegionComponent },
   { path: 'place', component: PlaceComponent },
   { path: 'project', component: ProjectComponent },
+
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

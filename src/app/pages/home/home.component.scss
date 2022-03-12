@@ -12,10 +12,12 @@
         padding: var(--gap) var(--gap) var(--gap) 0;
 
         .title {
-            // gap: 8px;
+            gap: 8px;
+            margin-top: 36px;
             text-align: right;
         }
         .text {
+            margin-top: 24px;
             padding-left: calc(var(--cg_1) * 2);
         }
     }
