@@ -1,27 +1,19 @@
 <div class="wrap col">
   <header>
-    <div class="breadcrumbs row">
-      <a [routerLink]="['/']" class="breadcrumbs-home"> Карта </a>
-      <img src="/assets/icons/chevron-forward-outline.svg" alt=">">
-      <a [routerLink]="['/region']" class="breadcrumbs-link"> Неизвестная область </a>
-      <img src="/assets/icons/chevron-forward-outline.svg" alt=">">
-      <a [routerLink]="['/place']" class="breadcrumbs-link"> Населенный пункт </a>
-      <img src="/assets/icons/chevron-forward-outline.svg" alt=">">
-      <span class="breadcrumbs-text"> Детский сад "Ласточка" </span>
-    </div>
+    <img [routerLink]="['/']" src="/assets/images/logo.png" class="logo" alt="LOGO">
 
-    <div class="btns row">
-      <img src="/assets/icons/search.svg" alt="SHOW_HELLO" (click)="showHello()">
-      <img src="/assets/icons/info.svg" alt="SHOW_HELLO" (click)="showHello()">
-    </div>
+    <input type="text" class="search" placeholder="Начните вводить наименование">
   </header>
+  <nav *ngIf="navVisible$ |async" @titleAnimation>
+    <a class="back-btn row" (click)="back()">
+      <img src="/assets/icons/back.svg" alt="BACK">
+      <span> Назад </span>
+    </a>
+
+    <a [routerLink]="['/']"> На карту </a>
+  </nav>
   <main>
     <router-outlet></router-outlet>
   </main>
 
-  <footer>
-    <h1> Карта благотворительности </h1>
-  </footer>
 </div>
-
-<!-- <img src="/assets/icons/trash.svg" alt="SHOW_HELLO" class="show-hello-btn" (click)="showHello()"> -->

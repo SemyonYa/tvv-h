@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BreadcrumbsComponent } from './breadcrumbs.component';
+import { GaleryModalComponent } from './galery-modal.component';
 
-describe('BreadcrumbsComponent', () => {
-  let component: BreadcrumbsComponent;
-  let fixture: ComponentFixture<BreadcrumbsComponent>;
+describe('GaleryModalComponent', () => {
+  let component: GaleryModalComponent;
+  let fixture: ComponentFixture<GaleryModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BreadcrumbsComponent ]
+      declarations: [ GaleryModalComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BreadcrumbsComponent);
+    fixture = TestBed.createComponent(GaleryModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

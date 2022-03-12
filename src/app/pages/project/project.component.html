@@ -1,3 +1,32 @@
-<div class="wrap" @titleAnimation>
-    PROJECT
+<div class="wrap row" @titleAnimation>
+    <div class="left col">
+        <h4> [Реконструкция МБОУ Основная общеобразовательная школа п.Балахониха] </h4>
+        <div class="swiper-wrap">
+            <swiper #swiperRef [config]="config">
+                <!-- <ng-template *ngIf="!product.images?.length" swiperSlide>
+                  <img src="/assets/images/north.jpg" alt="">
+                </ng-template> -->
+                <ng-template *ngFor="let image of images" swiperSlide>
+                    <img class="swiper-image" [src]="image.wide" alt="">
+                </ng-template>
+            </swiper>
+            <img src="/assets/icons/expand.svg" alt="FULL_SCREEN" class="expand" (click)="goToFullScreen()">
+        </div>
+    </div>
+    <div class="right col">
+        <div class="title col">
+            <h2> КАРТА БЛАГОТВОРИТЕЛЬНОСТИ </h2>
+            <h3> [Реконструкция МБОУ Основная общеобразовательная школа п.Балахониха] </h3>
+        </div>
+        <div class="text col">
+            <p class="indented">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptas illo totam dolores explicabo
+                asperiores.
+            </p>
+            <p class="indented">
+                Earum eaque rerum atque amet ipsa provident tenetur molestiae laborum exercitationem reiciendis
+                mollitia rem!
+            </p>
+        </div>
+    </div>
 </div>

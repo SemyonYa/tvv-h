@@ -1,3 +1,30 @@
+.wrap {
+    height: 100%;
+    gap: 0;
+
+    .left {
+        flex: 0 1 calc(var(--cg_1) * 6 + var(--gap));
+    }
+
+    .right {
+        flex: 0 1 calc(var(--cg_1) * 6);
+        align-items: end;
+        padding: var(--gap) var(--gap) var(--gap) 0;
+
+        .title {
+            // gap: 8px;
+            text-align: right;
+        }
+        .text {
+            padding-left: calc(var(--cg_1) * 2);
+        }
+    }
+}
+
 svg {
-    height: calc(100vh - 184px);
+    position: fixed;
+    top: 100px;
+    left: var(--gap);
+    width: calc(var(--cg_1) * 7);
+    height: calc(100vh - 200px);
 }

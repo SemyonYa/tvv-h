@@ -1,8 +1,0 @@
-<div class="back" (click)="close()"></div>
-<div *ngIf="x && y" class="wrap" [ngStyle]="{top: y + 'px', left: x + 'px'}" @titleAnimation>
-    <h3> {{name}} </h3>
-
-    <p> Всего {{name.length}} объектов благотворительности </p>
-
-    <a [routerLink]="['/region']" (click)="close()"> Подробнее ... </a>
-</div>

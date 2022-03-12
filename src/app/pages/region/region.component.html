@@ -1,19 +1,38 @@
-<div class="wrap" @titleAnimation>
-    <h2> Неизвестная область </h2>
+<div class="wrap row" @titleAnimation>
+    <div class="left col">
+        <a [routerLink]="['/place']" *ngFor="let item of [1,2,3,4,5,6,7]" class="place row">
+            <img src="/assets/images/gerb.png" alt="GERB">
+            <div class="info col">
+                <p> [PLACE NAME] </p>
+                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla. </p>
+                <div class="object-types row">
+                    <div *ngFor="let ot of [1,2,3,4]" class="object-types-item row">
+                        <div class="circle red x{{ot}}"></div>
+                        <span> [Project type] </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="right col">
+        <div class="title col">
+            <h2> КАРТА БЛАГОТВОРИТЕЛЬНОСТИ </h2>
+            <h1> [НИЖЕГОРОДСКАЯ ОБЛАСТЬ] </h1>
+        </div>
+        <div class="text col">
+            <p class="indented">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptas illo totam dolores explicabo
+                asperiores
+            </p>
+            <p class="indented">
+                Earum eaque rerum atque amet ipsa provident tenetur molestiae laborum exercitationem reiciendis mollitia
+                rem
+            </p>
+            <p class="indented">
+                repellat soluta perspiciatis laudantium sit dolore, ipsam architecto? Dolor commodi sunt, similique
+                repellendus aperiam exercitationem animi quia inventore rem rerum ex!
+            </p>
+        </div>
 
-    <p><strong>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti alias et sequi ratione a vero quo
-            incidunt, eaque modi quis voluptate blanditiis ex repudiandae quidem ipsum, quod sint voluptatibus rerum.
-        </strong></p>
-
-    <h4> Населенные пункты </h4>
-
-    <ul>
-        <li *ngFor="let item of [1,2,3,4]">
-            <a [routerLink]="['/place']">Деревня {{item}} </a>
-        </li>
-    </ul>
-
-
-
+    </div>
 </div>

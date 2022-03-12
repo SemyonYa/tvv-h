@@ -1,0 +1,11 @@
+<div class="wrap" @pageAnimation>
+    <swiper #swiperRef [config]="config">
+        <!-- <ng-template *ngIf="!product.images?.length" swiperSlide>
+          <img src="/assets/images/north.jpg" alt="">
+        </ng-template> -->
+        <ng-template *ngFor="let image of images" swiperSlide>
+            <img class="swiper-image" [src]="image.wide" alt="">
+        </ng-template>
+    </swiper>
+    <img src="/assets/icons/close.svg" alt="CLOSE" class="close-btn" (click)="close()">
+</div>

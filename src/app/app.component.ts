@@ -1,26 +1,31 @@
+import { Location } from '@angular/common';
 import { Component, ComponentRef, ViewContainerRef } from '@angular/core';
-import { HelloComponent } from './components/hello/hello.component';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, map, Observable } from 'rxjs';
+import { titleAnimation } from 'src/animations/title.animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [titleAnimation]
 })
 export class AppComponent {
-  title = 'tvv-hospital_ver';
-  helloComponentRef: ComponentRef<HelloComponent>;
+  title = 'Карта благовторительности';
 
   constructor(
-    private vcRef: ViewContainerRef
+    private location: Location,
+    private router: Router,
   ) { }
 
-  showHello() {
-    this.helloComponentRef = this.vcRef.createComponent(HelloComponent);
-    this.helloComponentRef.instance.close = this.hideHello;
+  navVisible$: Observable<boolean> = this.router.events
+    .pipe(
+      filter(e => e instanceof NavigationEnd),
+      map(e => e as NavigationEnd),
+      map(e => e.url !== '/' && e.urlAfterRedirects !== '/'),
+    )
 
-  }
-
-  hideHello = (): void => {
-    this.helloComponentRef?.destroy();
+  back() {
+    this.location.back();
   }
 }
