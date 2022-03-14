@@ -1,0 +1,27 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+    svg {
+        aspect-ratio: 1;
+        animation: rotation 1s infinite linear;
+
+        circle {
+            fill: var(--color-grey);
+            stroke: var(--color-blue);
+            stroke-width: 0px;
+        }
+    }
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

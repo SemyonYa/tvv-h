@@ -4,8 +4,8 @@
 
     .left {
         flex: 0 1 calc(var(--cg_1) * 6 + var(--gap));
-        padding: calc(var(--gap) + 32px) var(--gap) var(--gap) var(--gap);
-        margin-top: 20px;
+        padding: calc(var(--gap) + 24px) var(--gap) var(--gap) var(--gap);
+        // margin-top: 20px;
         overflow-y: auto;
 
         .project {
@@ -30,10 +30,11 @@
     .right {
         flex: 0 1 calc(var(--cg_1) * 6);
         align-items: end;
-        padding: var(--gap) var(--gap) var(--gap) 0;
+        padding: 8px var(--gap) 0 0;
+        // padding: var(--gap) var(--gap) var(--gap) 0;
 
         .title {
-            // gap: 8px;
+            gap: 8px;
             text-align: right;
         }
         .text {

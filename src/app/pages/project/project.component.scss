@@ -1,11 +1,14 @@
 .wrap {
     height: 100%;
     gap: 0;
+    overflow-y: auto;
+    padding-bottom: var(--gap);
     // padding-top: 6px;
 
     .left {
         flex: 0 1 calc(var(--cg_1) * 7 + var(--gap));
-        padding: var(--gap);
+        padding: 8px calc(var(--gap) + 12px);
+        // padding: var(--gap);
         overflow-y: auto;
 
         h4 {
@@ -34,9 +37,9 @@
 
             &.expand {
                 position: absolute;
-                right: 10px;
-                bottom: 10px;
-                width: 24px;
+                right: 0px;
+                bottom: 0px;
+                width: 60px;
                 aspect-ratio: 1;
                 z-index: 1;
                 cursor: pointer;
@@ -44,17 +47,90 @@
         }
     }
 
+    .nav-name {
+        gap: 50px;
+        img {
+            width: 16px;
+            flex: 0 1 16px;
+            cursor: pointer;
+        }
+
+        .name {
+            font-size: 24px;
+            color: var(--color-blue);
+            line-height: 1.2;
+        }
+    }
+
+    .toggle {
+        gap: 36px;
+        padding: 8px calc(var(--gap) + 12px);
+
+        span {
+            font-size: 24px;
+            color: var(--color-blue);
+            border-bottom: solid 2px var(--color-blue);
+            padding: 0 4px;
+
+            &:not(.active) {
+                color: var(--color-grey);
+                border-bottom-color: var(--color-grey);
+                cursor: pointer;
+            }
+        }
+    }
+
+    .bottom {
+        // flex: 1 1 0;
+    }
+
     .right {
         flex: 0 1 calc(var(--cg_1) * 5);
         align-items: end;
-        padding: var(--gap) var(--gap) var(--gap) 0;
+        // padding: var(--gap) var(--gap) var(--gap) 0;
+        padding: 8px var(--gap) 0 0;
 
         .title {
-            // gap: 8px;
+            gap: 8px;
             text-align: right;
         }
         .text {
             padding-left: var(--cg_1);
+            gap: 26px;
+
+            h6 {
+                font-weight: 400;
+                line-height: 1.2;
+                font-size: 16px;
+                text-transform: uppercase;
+                // padding-right: var(--cg_1);
+            }
+
+            .list {
+                gap: 26px;
+                .item {
+                    gap: 36px;
+
+                    img {
+                        height: 44px;
+                        aspect-ratio: 1;
+                        object-fit: contain;
+                    }
+
+                    .values {
+                        gap: 0;
+                        justify-content: space-between;
+
+                        p.name {
+                            color: var(--color-blue);
+                        }
+
+                        p.value {
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
         }
     }
 }

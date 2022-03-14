@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { tap } from 'rxjs';
+import { titleAnimation } from 'src/animations/title.animation';
+import { DataService } from 'src/services/data.service';
 
 @Component({
   selector: 'app-admin-regions',
   templateUrl: './admin-regions.component.html',
-  styleUrls: ['./admin-regions.component.scss']
+  styleUrls: ['./admin-regions.component.scss'],
+  animations: [titleAnimation],
 })
-export class AdminRegionsComponent implements OnInit {
+export class AdminRegionsComponent {
+  constructor(
+    private data: DataService,
+  ) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  regions$ = this.data.data()
+    .pipe(
+      tap(x => console.log(x)),
+    );
 }

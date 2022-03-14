@@ -1,0 +1,37 @@
+<collapsible [expanded]="!!selectedImage">
+  <img [src]="selectedImage?.thumb" class="preview" alt="">
+  <!-- <div class="thumbs-item preview" style="background-image: url({{}});"></div> -->
+</collapsible>
+<input type="text" class="none" placeholder="[empty]" readonly [value]="selectedImage ? selectedImage.thumb : ''">
+
+<p *ngIf="error" class="msg error"> {{error}} </p>
+
+<div class="row">
+  <button type="button" (click)="showLibrary()"> Выбрать </button>
+  <button type="button" (click)="file.click()">
+    Загрузить
+    <img src="/assets/icons/upload.svg" alt="UPLOAD">
+  </button>
+</div>
+<input #file type="file" multiple accept=".png, .jpg, .jpeg" (change)="onChange($event)">
+
+<div *ngIf="libraryShown" class="library-back" @libraryAnimation>
+  <div class="library">
+    <h3 class="row">
+      Выбор изображения
+      <div class="close-uploaded">
+        <span (click)="hideLibrary()" tabindex="0" role="button">Закрыть</span>
+      </div>
+    </h3>
+    <div *ngIf="(images$ |async) || error; else inProgress" class="thumbs">
+      <img *ngFor="let image of images$ |async" [src]="image.thumb"
+        [ngClass]="{'thumb': true, 'selected': image.id === selectedImage?.id}" alt="" (click)="selectImage(image)">
+    </div>
+
+    <p *ngIf="error" class="msg error"> {{error}} </p>
+  </div>
+</div>
+
+<ng-template #inProgress>
+  <in-progress></in-progress>
+</ng-template>

@@ -1,0 +1,7 @@
+<div *ngIf="formState.msg" [ngClass]="{
+    'msg': true, 
+    'error': formState.state === State.Error, 
+    'success': formState.state === State.Success
+}">
+    {{formState.msg}}
+</div>

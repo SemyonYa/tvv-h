@@ -11,14 +11,14 @@
     }
 
     header {
-        flex: 0 1 80px;
+        flex: 0 1 60px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 14px var(--gap);
 
         img.logo {
-            height: 40px;
+            height: 32px;
             cursor: pointer;
         }
 
@@ -26,8 +26,10 @@
             background: var(--color-back);
             border: 1px solid var(--color-grey);
             border-radius: 4px;
-            padding: 9px;
+            padding: 0 8px;
+            height: 32px;
             font-size: 12px;
+            line-height: 1;
             width: calc(var(--c_1) * 4 + var(--gap) * 3);
             // min-width: 300px;
 
@@ -46,11 +48,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: var(--gap);
+        padding: 8px var(--gap);
 
         a {
             color: var(--color-grey);
-            padding: 0 15px;
+            padding: 8px 12px;
+            line-height: 1;
             cursor: pointer;
 
             &.back-btn {
@@ -74,23 +77,25 @@
         // border: solid 4px blue;
         overflow-y: hidden;
 
-        // &::after,
-        // &::before {
-        //     content: "";
-        //     position: fixed;
-        //     right: 0;
-        //     left: 0;
-        //     height: 12px;
-        // }
+        &::after,
+        &::before {
+            content: "";
+            position: fixed;
+            right: 0;
+            left: 0;
+            height: 16px;
+            z-index: 2;
+        }
 
-        // &::before {
-        //     top: 80px;
-        //     background: linear-gradient(180deg, white, transparent);
-        // }
+        &::before {
+            top: 108px;
+            background: linear-gradient(180deg, var(--color-back), transparent);
+        }
 
-        // &::after {
-        //     bottom: 80px;
-        //     background: linear-gradient(0deg, white, transparent);
-        // }
+        &::after {
+            bottom: 0px;
+            // height: 16px;
+            background: linear-gradient(0deg, white, transparent);
+        }
     }
 }

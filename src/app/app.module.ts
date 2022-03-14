@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SwiperModule } from 'swiper/angular';
 
@@ -26,6 +27,7 @@ import { GaleryModalComponent } from './components/galery-modal/galery-modal.com
     BrowserAnimationsModule,
     AppRoutingModule,
     SwiperModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,7 +5,7 @@
 
     .left {
         flex: 0 1 calc(var(--cg_1) * 6 + var(--gap));
-        padding: var(--gap);
+        padding: 8px var(--gap) var(--gap) var(--gap);
         gap: 32px;
         overflow-y: auto;
 
@@ -64,7 +64,7 @@
     .right {
         flex: 0 1 calc(var(--cg_1) * 6);
         align-items: end;
-        padding: var(--gap) var(--gap) var(--gap) 0;
+        padding: 8px var(--gap) 0 0;
 
         .title {
             gap: 8px;

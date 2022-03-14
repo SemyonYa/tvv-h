@@ -1,9 +1,21 @@
-<div class="wrap">
+<div class="wrap col" @titleAnimation>
     <h2> Регионы </h2>
 
+    <table>
+        <tr *ngFor="let r of regions$ |async">
+            <td> Region {{r.name}} (ID {{r.id}})</td>
+            <td>
+                <a [routerLink]="[r.id]"> Редактировать </a>
+            </td>
+            <td>
+                <a [routerLink]="[r.id, 'places']"> Населенные пункты </a>
+            </td>
+        </tr>
+    </table>
+
     <ul class="regions col">
-        <li *ngFor="let r of [1,2,3,4,5,6]">
-            <a [routerLink]="[r, 'places']"> [REGION {{r}}] </a>
+        <li class="row">
+            <div class="name"></div>
         </li>
     </ul>
 </div>

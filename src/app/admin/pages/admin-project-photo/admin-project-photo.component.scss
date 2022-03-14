@@ -1,0 +1,17 @@
+.list {
+    flex-wrap: wrap;
+
+    .item {
+        position: relative;
+
+        .thumb-delete {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 12px;
+            aspect-ratio: 1;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.7), transparent 75%, transparent);
+            cursor: pointer;
+        }
+    }
+}

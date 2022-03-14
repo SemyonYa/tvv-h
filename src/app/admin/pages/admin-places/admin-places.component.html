@@ -1,1 +1,19 @@
-<p>admin-places works!</p>
+<div class="wrap col" @titleAnimation>
+    <h2>
+        <a [routerLink]="['/admin', 'regions']">Регионы</a>
+        <span> / </span>
+        [Region name]: Населенные пункты
+    </h2>
+
+    <table>
+        <tr *ngFor="let p of places$ |async">
+            <td> Place {{p.name}} </td>
+            <td>
+                <a [routerLink]="[p.id]"> Редактировать </a>
+            </td>
+            <td>
+                <a [routerLink]="[p.id, 'projects']"> Проекты </a>
+            </td>
+        </tr>
+    </table>
+</div>

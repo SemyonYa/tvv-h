@@ -9,24 +9,36 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminPlaceEditComponent } from './pages/admin-place-edit/admin-place-edit.component';
 import { AdminRegionEditComponent } from './pages/admin-region-edit/admin-region-edit.component';
 import { AdminWrapComponent } from './pages/admin-wrap/admin-wrap.component';
+import { AdminProjectPhotoComponent } from './pages/admin-project-photo/admin-project-photo.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InProgressComponent } from './components/in-progress/in-progress.component';
+import { FormStateComponent } from './components/form-state/form-state.component';
+import { FileInputComponent } from './components/file-input/file-input.component';
+import { CollapsibleComponent } from './components/collapsible/collapsible.component';
 
 
 
 @NgModule({
   declarations: [
-    AdminRegionsComponent,
-    AdminPlacesComponent,
-    AdminProjectsComponent,
     AdminProjectEditComponent,
+    AdminProjectPhotoComponent,
+    AdminProjectsComponent,
     AdminPlaceEditComponent,
+    AdminPlacesComponent,
     AdminRegionEditComponent,
+    AdminRegionsComponent,
+    AdminWrapComponent,
 
+    CollapsibleComponent,
     ConfirmComponent,
-     AdminWrapComponent,
+    FileInputComponent,
+    FormStateComponent,
+    InProgressComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }

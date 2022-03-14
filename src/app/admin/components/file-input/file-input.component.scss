@@ -1,0 +1,50 @@
+input[type="file"] {
+  display: none;
+}
+
+button {
+  margin-bottom: 12px;
+
+  img {
+    margin-left: 6px;
+  }
+}
+
+.preview {
+  width: 100px;
+  height: 100px;
+  margin: 6px 0;
+}
+
+.close-uploaded {
+  margin: 6px 0 12px;
+  text-decoration: dotted 1px underline;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.library-back {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .library {
+    width: min(100%, 960px);
+    height: 50vmin;
+    background-color: var(--color-back);
+    padding: 40px;
+    margin-bottom: 40px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+}
+
+.none {
+  display: none;
+}

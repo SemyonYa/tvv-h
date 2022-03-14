@@ -16,6 +16,8 @@ SwiperCore.use([Navigation, Pagination]);
   animations: [titleAnimation]
 })
 export class ProjectComponent implements OnInit {
+  isAfter: boolean = false;
+
   config: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 12,
@@ -24,7 +26,7 @@ export class ProjectComponent implements OnInit {
     scrollbar: { draggable: true },
   };
   images: Image[] = [1, 2, 3, 4, 5, 6, 7]
-    .map(i => ({ id: i, thumb: `/assets/fake/category${i}.jpg`, wide: `/assets/fake/category${i}.jpg` }));
+    .map(i => ({ id: i, thumb: `/assets/fake/category${i}.jpg`, medium: '', large: `/assets/fake/category${i}.jpg` }));
 
   constructor(
     private vcRef: ViewContainerRef
@@ -50,6 +52,10 @@ export class ProjectComponent implements OnInit {
   slideTo = (index: number) => {
     this.galeryModalRef.destroy();
     this.swiperElem.swiperRef.slideTo(index, 600);
+  }
+
+  toggleIsAfter(value: boolean) {
+    this.isAfter = value;
   }
 
 }

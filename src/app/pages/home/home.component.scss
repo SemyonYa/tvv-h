@@ -9,11 +9,12 @@
     .right {
         flex: 0 1 calc(var(--cg_1) * 6);
         align-items: end;
-        padding: var(--gap) var(--gap) var(--gap) 0;
+        padding: 8px var(--gap) 0 0;
+        margin-top: 48px;
 
         .title {
             gap: 8px;
-            margin-top: 36px;
+            // margin-top: 36px;
             text-align: right;
         }
         .text {
@@ -25,8 +26,8 @@
 
 svg {
     position: fixed;
-    top: 100px;
+    top: 120px;
     left: var(--gap);
     width: calc(var(--cg_1) * 7);
-    height: calc(100vh - 200px);
+    height: calc(100vh - 160px);
 }

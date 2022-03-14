@@ -1,1 +1,25 @@
-<p>admin-projects works!</p>
+<div class="wrap col" @titleAnimation>
+    <h2>
+        <a [routerLink]="['/admin', 'regions']"> Регионы </a>
+        <span> / </span>
+        <a [routerLink]="['/admin', 'regions', '[RegionID]', 'places']"> [Region name]: Населенные пункты </a>
+        <span> / </span>
+        [Place name]: Проекты
+    </h2>
+
+    <table>
+        <tr *ngFor="let p of projects$ |async">
+            <td> Project {{p.name}} </td>
+            <td>
+                <a [routerLink]="[p.id]"> Редактировать </a>
+            </td>
+            <td>
+                <a [routerLink]="[p.id, 'before']"> Фото до </a>
+            </td>
+            <td>
+                <a [routerLink]="[p.id, 'after']"> Фото после </a>
+            </td>
+        </tr>
+    </table>
+
+</div>
