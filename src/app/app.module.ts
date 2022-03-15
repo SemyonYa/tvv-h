@@ -12,6 +12,7 @@ import { ProjectComponent } from './pages/project/project.component';
 import { RegionComponent } from './pages/region/region.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GaleryModalComponent } from './components/galery-modal/galery-modal.component';
+import { InProgressComponent } from './components/in-progress/in-progress.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { GaleryModalComponent } from './components/galery-modal/galery-modal.com
     PlaceComponent,
     ProjectComponent,
     RegionComponent,
+
     GaleryModalComponent,
+    InProgressComponent,
   ],
   imports: [
     BrowserModule,

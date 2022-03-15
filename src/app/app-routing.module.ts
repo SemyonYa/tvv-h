@@ -7,15 +7,15 @@ import { RegionComponent } from './pages/region/region.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'region', component: RegionComponent },
-  { path: 'place', component: PlaceComponent },
-  { path: 'project', component: ProjectComponent },
+  { path: 'region/:regionId', component: RegionComponent },
+  { path: 'place/:placeId', component: PlaceComponent },
+  { path: 'project/:projectId', component: ProjectComponent },
 
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

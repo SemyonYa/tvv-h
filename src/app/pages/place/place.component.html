@@ -1,20 +1,21 @@
-<div class="wrap row" @titleAnimation>
+<div *ngIf="place$ |async as place; else inProgress" class="wrap row" @titleAnimation>
     <div class="left col">
-        <a [routerLink]="['/project']" *ngFor="let item of [1,2,3,4,5,6,7]" class="project row">
-            <img [src]="'/assets/fake/category' + item + '.jpg'" alt="PROJECT_PICTURE">
+        <a *ngFor="let project of place.projects" [routerLink]="['/project', project.id]" class="project row">
+            <img [src]="'/assets/fake/category' + project.id + '.jpg'" alt="PROJECT_PICTURE">
             <div class="info col">
-                <p> [PROJECT NAME] </p>
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <p> Ipsum dolor sit amet consectetur adipisicing elit. Minus voluptas illo totam dolores explicab.</p>
+                <p class="name"> {{project.name}} </p>
+                <p> {{project.brief}}.</p>
+                <p *ngFor="let p of project.description.split('\n')"> {{p}}</p>
             </div>
         </a>
     </div>
     <div class="right col">
         <div class="title col">
             <h2> КАРТА БЛАГОТВОРИТЕЛЬНОСТИ </h2>
-            <h1> [БАЛАХОНИХА] </h1>
+            <h1> {{place.name}} </h1>
         </div>
         <div class="text col">
+            <p class="indented"> {{place.description}} </p>
             <p class="indented">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptas illo totam dolores explicabo
                 asperiores.
@@ -27,3 +28,9 @@
         </div>
     </div>
 </div>
+
+<ng-template #inProgress>
+    <div class="center">
+        <in-progress></in-progress>
+    </div>
+</ng-template>

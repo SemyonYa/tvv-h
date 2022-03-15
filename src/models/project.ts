@@ -1,4 +1,4 @@
-import { ProjectTypes as ProjectType } from "./helpers/project-types";
+import { ProjectType as ProjectType } from "./helpers/project-type";
 import { Image } from "./image";
 
 export class Project {
@@ -17,4 +17,7 @@ export class Project {
     placeName: string;
     projectTypeId: ProjectType;
     projectTypeName: string;
+
+    prevId: number;
+    nextId: number;
 }

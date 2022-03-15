@@ -1,4 +1,6 @@
+import { ProjectType } from "./helpers/project-type";
 import { Image } from "./image";
+import { Project } from "./project";
 
 export class Place {
     id: number;
@@ -9,4 +11,9 @@ export class Place {
     image?: Image;
     regionId: number;
     regionName?: string;
+
+    projects: Project[];
+    projectTypes: { id: ProjectType, name: string }[];
+
+    descriptionPs: string[];
 }

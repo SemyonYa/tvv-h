@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlaceComponent } from './place.component';
+import { InProgressComponent } from './in-progress.component';
 
-describe('PlaceComponent', () => {
-  let component: PlaceComponent;
-  let fixture: ComponentFixture<PlaceComponent>;
+describe('InProgressComponent', () => {
+  let component: InProgressComponent;
+  let fixture: ComponentFixture<InProgressComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlaceComponent ]
+      declarations: [ InProgressComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlaceComponent);
+    fixture = TestBed.createComponent(InProgressComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

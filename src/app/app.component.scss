@@ -88,6 +88,7 @@
         }
 
         &::before {
+            height: 12px;
             top: 108px;
             background: linear-gradient(180deg, var(--color-back), transparent);
         }

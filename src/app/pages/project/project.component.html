@@ -1,16 +1,20 @@
-<div class="wrap col" @titleAnimation>
+<div *ngIf="project$ |async as project; else inProgress" class="wrap col" @titleAnimation>
     <div class="top row">
         <div class="left">
             <div class="nav-name row">
-                <img src="/assets/icons/prev.svg" alt="PREV">
-                <div class="name">[Реконструкция МБОУ Основная общеобразовательная школа п.Балахониха]</div>
-                <img src="/assets/icons/next.svg" alt="NEXT">
+                <img *ngIf="!project.prevId" src="/assets/icons/prev.svg" class="inactive" alt="PREV">
+                <img *ngIf="project.prevId" [routerLink]="['project', project.prevId]" src="/assets/icons/prev.svg"
+                    alt="PREV">
+                <div class="name"> {{project.name}} </div>
+                <img *ngIf="!project.prevId" src="/assets/icons/next.svg" class="inactive" alt="NEXT">
+                <img *ngIf="project.prevId" [routerLink]="['project', project.nextId]" src="/assets/icons/next.svg"
+                    alt="NEXT">
             </div>
         </div>
         <div class="right">
             <div class="title col">
                 <h2> КАРТА БЛАГОТВОРИТЕЛЬНОСТИ </h2>
-                <h1> БАЛАХОНИХА </h1>
+                <h1> {{project.placeName}} </h1>
             </div>
         </div>
     </div>
@@ -47,7 +51,7 @@
         </div>
         <div class="right col">
             <div class="text col">
-                <h6> [Реконструкция МБОУ Основная общеобразовательная школа п.Балахониха] </h6>
+                <h6> {{project.name}} </h6>
 
                 <div class="list col">
                     <div class="item row">
@@ -55,7 +59,7 @@
 
                         <div class="values col">
                             <p class="name"> Период работ </p>
-                            <p class="value"> [Март - Август 2020 года] </p>
+                            <p class="value"> {{project.calendar}} </p>
                         </div>
                     </div>
                     <div class="item row">
@@ -63,7 +67,7 @@
 
                         <div class="values col">
                             <p class="name"> Финансирование </p>
-                            <p class="value"> [30] млн рублей </p>
+                            <p class="value"> {{project.costs}} млн рублей </p>
                         </div>
                     </div>
                     <div class="item row">
@@ -71,16 +75,16 @@
 
                         <div class="values col">
                             <p class="name"> Востребованность </p>
-                            <p class="value"> [3045 учеников] </p>
+                            <p class="value"> {{project.people}} </p>
                         </div>
                     </div>
                 </div>
 
-                <p class="indented">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptas illo totam dolores explicabo
-                    asperiores.
-                </p>
-                <p class="indented">
+                <div class="ps col">
+                    <p *ngFor="let p of project.description.split('\n')" class="indented"> {{p}} </p>
+                </div>
+
+                <!-- <p class="indented">
                     Earum eaque rerum atque amet ipsa provident tenetur molestiae laborum exercitationem reiciendis
                     mollitia rem!
                 </p>
@@ -92,8 +96,14 @@
                 <p class="indented">
                     Earum eaque rerum atque amet ipsa provident tenetur molestiae laborum exercitationem reiciendis
                     mollitia rem!
-                </p>
+                </p> -->
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #inProgress>
+    <div class="center">
+        <in-progress></in-progress>
+    </div>
+</ng-template>

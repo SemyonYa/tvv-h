@@ -1,5 +1,19 @@
-<div class="wrap row" @titleAnimation>
+<div *ngIf="region$ |async as region; else inProgress" class="wrap row" @titleAnimation>
     <div class="left col">
+        <a *ngFor="let place of region.places" [routerLink]="['/place', place.id]" class="place row">
+            <img src="/assets/images/gerb.png" alt="GERB">
+            <div class="info col">
+                <p> {{place.name}} </p>
+                <p> {{place.brief}} </p>
+                <!-- <pre> {{place.projectTypes |json }} </pre> -->
+                <div class="object-types row">
+                    <div *ngFor="let pt of place.projectTypes" class="object-types-item row">
+                        <div class="circle x{{pt.id}}"></div>
+                        <span> {{pt.name}} </span>
+                    </div>
+                </div>
+            </div>
+        </a>
         <a [routerLink]="['/place']" *ngFor="let item of [1,2,3,4,5,6,7]" class="place row">
             <img src="/assets/images/gerb.png" alt="GERB">
             <div class="info col">
@@ -7,7 +21,7 @@
                 <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla. </p>
                 <div class="object-types row">
                     <div *ngFor="let ot of [1,2,3,4]" class="object-types-item row">
-                        <div class="circle red x{{ot}}"></div>
+                        <div class="circle x{{ot}}"></div>
                         <span> [Project type] </span>
                     </div>
                 </div>
@@ -17,13 +31,11 @@
     <div class="right col">
         <div class="title col">
             <h2> КАРТА БЛАГОТВОРИТЕЛЬНОСТИ </h2>
-            <h1> [НИЖЕГОРОДСКАЯ ОБЛАСТЬ] </h1>
+            <h1> {{region.name}} </h1>
         </div>
         <div class="text col">
-            <p class="indented">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptas illo totam dolores explicabo
-                asperiores
-            </p>
+            <p class="indented"> {{region.description}} </p>
+
             <p class="indented">
                 Earum eaque rerum atque amet ipsa provident tenetur molestiae laborum exercitationem reiciendis mollitia
                 rem
@@ -36,3 +48,9 @@
 
     </div>
 </div>
+
+<ng-template #inProgress>
+    <div class="center">
+        <in-progress></in-progress>
+    </div>
+</ng-template>

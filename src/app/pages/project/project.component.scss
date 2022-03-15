@@ -53,6 +53,12 @@
             width: 16px;
             flex: 0 1 16px;
             cursor: pointer;
+
+            &.inactive {
+                // filter: grayscale(1);
+                opacity: .24;
+                cursor: auto;
+            }
         }
 
         .name {
@@ -86,7 +92,7 @@
 
     .right {
         flex: 0 1 calc(var(--cg_1) * 5);
-        align-items: end;
+        // align-items: end;
         // padding: var(--gap) var(--gap) var(--gap) 0;
         padding: 8px var(--gap) 0 0;
 
@@ -130,6 +136,10 @@
                         }
                     }
                 }
+            }
+
+            .ps {
+                gap: 8px;
             }
         }
     }

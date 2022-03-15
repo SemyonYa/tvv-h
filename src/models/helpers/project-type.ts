@@ -1,4 +1,4 @@
-export enum ProjectTypes {
+export enum ProjectType {
     School = 1,
     Kindergarten = 2,
     Hospital = 3,

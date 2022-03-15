@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://injini.ru',
+  baseUrl: 'http://tvv-api-v3',
 };
 
 /*

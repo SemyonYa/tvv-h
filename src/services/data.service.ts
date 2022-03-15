@@ -15,11 +15,18 @@ export class DataService {
     private http: HttpClient,
   ) { }
 
+  getInfo(): Observable<string> {
+    return this.http.get<string>(`${this.url}/info`);
+  }
+
   getRegions(): Observable<Region[]> {
     return this.http.get<Region[]>(`${this.url}/regions`);
     // .pipe(
     //   map(_items => _items.map(_item => _item as Region))
     // )
+  }
+  getRegion(regionId: number): Observable<Region> {
+    return this.http.get<Region>(`${this.url}/regions/${regionId}`);
   }
   getPlaces(regionId: number): Observable<Place[]> {
     return this.http.get<Place[]>(
