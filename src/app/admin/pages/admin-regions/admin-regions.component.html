@@ -1,9 +1,20 @@
 <div class="wrap col" @titleAnimation>
+    <h2> Информация на главной </h2>
+    <table>
+        <tr>
+            <td>
+                <a [routerLink]="['/admin', 'regions', 'info-edit']"> Редактировать </a>
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
     <h2> Регионы </h2>
 
-    <table>
-        <tr *ngFor="let r of regions$ |async">
-            <td> Region {{r.name}} (ID {{r.id}})</td>
+    <table *ngIf="regions$ |async as regions; else inProgress">
+        <tr *ngFor="let r of regions">
+            <td> {{r.name}} (ID {{r.id}})</td>
             <td>
                 <a [routerLink]="[r.id]"> Редактировать </a>
             </td>
@@ -19,3 +30,8 @@
         </li>
     </ul>
 </div>
+
+
+<ng-template #inProgress>
+    <in-progress></in-progress>
+</ng-template>

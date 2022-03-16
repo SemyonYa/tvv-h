@@ -1,13 +1,16 @@
-<div class="wrap col" @titleAnimation>
+<div *ngIf="item$ |async as place" class="wrap col" @titleAnimation>
     <h2>
         <a [routerLink]="['/admin', 'regions']"> Регионы </a>
         <span> / </span>
-        <a [routerLink]="['/admin', 'regions', '[RegionID]', 'places']"> [Region name]: Населенные пункты </a>
+        <a [routerLink]="['/admin', 'regions', place.regionId, 'places']"> {{place.regionName}}: Населенные пункты </a>
         <span> / </span>
-        {{ (item$ |async)?.name }}
+        {{ place.name }}
     </h2>
 
-    <form *ngIf="(form && (regions$ |async)); else inProgress" [formGroup]="form" (ngSubmit)="submit()" class="col">
+    <app-place-form [place]="place" [regions]="regions$ |async" [formState]="formState" (onSubmit)="submit($event)">
+    </app-place-form>
+
+    <!-- <form *ngIf="(form && (regions$ |async)); else inProgress" [formGroup]="form" (ngSubmit)="submit()" class="col">
 
         <div class="form-item">
             <label> Регион <strong> * </strong> </label>
@@ -31,7 +34,7 @@
 
         <div class="form-item">
             <label> Изображение (герб) </label>
-            <file-input [imageId]="(item$ |async)?.id" [imageName]="(item$ |async)?.name" [showImageOnSelect]="true"
+            <file-input [imageId]="place.imageId" [imageName]="place.image.medium" [showImageOnSelect]="true"
                 (onSelect)="onImageSelected($event)">
             </file-input>
         </div>
@@ -46,7 +49,7 @@
 
         <form-state [formState]="formState"></form-state>
 
-    </form>
+    </form> -->
 </div>
 
 <ng-template #inProgress>

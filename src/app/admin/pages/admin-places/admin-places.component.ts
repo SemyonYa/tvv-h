@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, switchMap, tap } from 'rxjs';
 import { titleAnimation } from 'src/animations/title.animation';
+import { Region } from 'src/models/region';
 import { DataService } from 'src/services/data.service';
 
 @Component({
@@ -9,6 +12,14 @@ import { DataService } from 'src/services/data.service';
   animations: [titleAnimation]
 })
 export class AdminPlacesComponent {
-  constructor(private data: DataService) { }
-  places$ = this.data.data();
+  constructor(
+    private data: DataService,
+    private activatedRoute: ActivatedRoute,
+  ) { }
+
+  region$: Observable<Region> = this.activatedRoute.params
+    .pipe(
+      tap(x => console.log(x)),
+      switchMap(_params => this.data.getRegion(+_params['regionId'])),
+    )
 }

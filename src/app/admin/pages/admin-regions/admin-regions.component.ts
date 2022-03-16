@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { tap } from 'rxjs';
 import { titleAnimation } from 'src/animations/title.animation';
 import { DataService } from 'src/services/data.service';
+import { RegionRestService } from 'src/services/rest/region.rest.service';
 
 @Component({
   selector: 'app-admin-regions',
@@ -11,11 +12,9 @@ import { DataService } from 'src/services/data.service';
 })
 export class AdminRegionsComponent {
   constructor(
-    private data: DataService,
+    // private data: DataService,
+    private regionRest: RegionRestService
   ) { }
 
-  regions$ = this.data.data()
-    .pipe(
-      tap(x => console.log(x)),
-    );
+  regions$ = this.regionRest.getAll();
 }

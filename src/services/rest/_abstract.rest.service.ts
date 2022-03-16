@@ -19,8 +19,8 @@ export abstract class AbstractRestService<T> {
   getAll(params?: HttpParams): Observable<T[]> {
     return this.http.get<T[]>(this.url, { params });
   }
-  getOne(id: number, params?: HttpParams): Observable<T[]> {
-    return this.http.get<T[]>(`${this.url}/${id}`, { params });
+  getOne(id: number, params?: HttpParams): Observable<T> {
+    return this.http.get<T>(`${this.url}/${id}`, { params });
   }
   post(item: Partial<T>, params?: HttpParams) {
     return this.http.post<T[]>(this.url, item, { params });

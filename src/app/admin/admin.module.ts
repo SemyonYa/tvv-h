@@ -15,6 +15,11 @@ import { InProgressComponent } from './components/in-progress/in-progress.compon
 import { FormStateComponent } from './components/form-state/form-state.component';
 import { FileInputComponent } from './components/file-input/file-input.component';
 import { CollapsibleComponent } from './components/collapsible/collapsible.component';
+import { AdminInfoEditComponent } from './pages/admin-info-edit/admin-info-edit.component';
+import { AdminPlaceAddComponent } from './pages/admin-place-add/admin-place-add.component';
+import { PlaceFormComponent } from './components/place-form/place-form.component';
+import { ProjectFormComponent } from './components/project-form/project-form.component';
+import { AdminProjectAddComponent } from './pages/admin-project-add/admin-project-add.component';
 
 
 
@@ -34,6 +39,11 @@ import { CollapsibleComponent } from './components/collapsible/collapsible.compo
     FileInputComponent,
     FormStateComponent,
     InProgressComponent,
+    AdminInfoEditComponent,
+    AdminPlaceAddComponent,
+    PlaceFormComponent,
+    ProjectFormComponent,
+    AdminProjectAddComponent,
   ],
   imports: [
     CommonModule,

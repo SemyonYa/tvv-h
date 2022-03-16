@@ -1,13 +1,17 @@
-<div class="wrap col" @titleAnimation>
+<div *ngIf="region$ |async as region; else inProgress" class="wrap col" @titleAnimation>
     <h2>
         <a [routerLink]="['/admin', 'regions']">Регионы</a>
         <span> / </span>
-        [Region name]: Населенные пункты
+        {{region.name}}: населенные пункты
     </h2>
 
+    <div class="row">
+        <button [routerLink]="['add']"> Добавить </button>
+    </div>
+
     <table>
-        <tr *ngFor="let p of places$ |async">
-            <td> Place {{p.name}} </td>
+        <tr *ngFor="let p of region.places">
+            <td> {{p.name}} </td>
             <td>
                 <a [routerLink]="[p.id]"> Редактировать </a>
             </td>
@@ -16,4 +20,12 @@
             </td>
         </tr>
     </table>
+
+    <div *ngIf="!region.places.length" class="msg warning">
+        Список пуст
+    </div>
 </div>
+
+<ng-template #inProgress>
+    <in-progress></in-progress>
+</ng-template>

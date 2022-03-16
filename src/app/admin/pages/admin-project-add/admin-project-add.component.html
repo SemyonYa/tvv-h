@@ -1,0 +1,23 @@
+<div *ngIf="place$ |async as place; else inProgress" class="wrap col" @titleAnimation>
+    <h2>
+        <a [routerLink]="['/admin', 'regions']"> Регионы </a>
+        <span> / </span>
+        <a [routerLink]="['/admin', 'regions', place.regionId, 'places']">
+            {{place.regionName}}: Населенные пункты
+        </a>
+        <span> / </span>
+        <a [routerLink]="['/admin', 'regions', place.regionId, 'places', place.id, 'projects']">
+            {{place.name}}: Проекты
+        </a>
+        <span> / </span>
+        Новый проект
+    </h2>
+
+    <app-project-form [placeId]="place.id" [places]="places$ |async" [projectTypes]="projectTypes$ |async"
+        [formState]="formState" (onSubmit)="submit($event)"></app-project-form>
+
+</div>
+
+<ng-template #inProgress>
+    <in-progress></in-progress>
+</ng-template>

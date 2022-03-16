@@ -9,7 +9,10 @@ export class Project {
     people: string;
     calendar: string;
     costs: number;
-    images: Image[];
+    images: {
+        before: Image[],
+        after: Image[],
+    };
 
     regionId: number;
     regionName: string;

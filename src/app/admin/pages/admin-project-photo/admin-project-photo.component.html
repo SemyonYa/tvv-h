@@ -1,22 +1,24 @@
-<div class="wrap col" @titleAnimation>
+<div *ngIf="project$ |async as project" class="wrap col" @titleAnimation>
     <h2>
         <a [routerLink]="['/admin', 'regions']"> Регионы </a>
         <span> / </span>
-        <a [routerLink]="['/admin', 'regions', '[RegionID]', 'places']"> [Region name]: Населенные пункты </a>
-        <span> / </span>
-        <a [routerLink]="['/admin', 'regions', '[RegionID]', 'places', '[PlaceID]', 'projects']">
-            [Place name]: Проекты
+        <a [routerLink]="['/admin', 'regions', project.regionId, 'places']"> {{project.regionName}}: Населенные пункты
         </a>
         <span> / </span>
-        [Project name]: {{(timeParam$ |async) === 'before' ? 'Фото до' : 'Фото после'}}
+        <a [routerLink]="['/admin', 'regions', project.regionId, 'places', project.placeId, 'projects']">
+            {{project.placeName}}: Проекты
+        </a>
+        <span> / </span>
+        {{project.name}}: {{(timeParam$ |async) === 'before' ? 'Фото до' : 'Фото после'}}
     </h2>
 
     <div class="list row">
-        <div *ngFor="let image of images2$ |async" class="item">
+
+        <div *ngFor="let image of images$ |async" class="item">
             <img [src]="image.thumb" alt="THUMB" class="thumb">
             <img src="/assets/icons/close-red.svg" alt="CLOSE" class="thumb-delete">
         </div>
     </div>
 
-    <file-input [showImageOnSelect]="false" ></file-input>
+    <file-input [showImageOnSelect]="false"></file-input>
 </div>

@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, map, Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Item } from 'src/models/item';
 import { Place } from 'src/models/place';
 import { Project } from 'src/models/project';
 import { Region } from 'src/models/region';
@@ -53,6 +54,10 @@ export class DataService {
 
   getProject(projectId: number): Observable<Project> {
     return this.http.get<Project>(`${this.url}/projects/${projectId}`);
+  }
+  
+  getProjectTypes(): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.url}/project-types`);
   }
 
 

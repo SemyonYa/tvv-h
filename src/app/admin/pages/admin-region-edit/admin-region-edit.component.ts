@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, switchMap, take, tap } from 'rxjs';
 import { titleAnimation } from 'src/animations/title.animation';
 import { DataService } from 'src/services/data.service';
 import { RegionRestService } from 'src/services/rest/region.rest.service';
@@ -19,34 +19,57 @@ export class AdminRegionEditComponent {
   State = State;
 
   constructor(
-    private data: DataService,
+    // private data: DataService,
     private regionRest: RegionRestService,
     private router: Router,
+    private acrtivatedRoute: ActivatedRoute,
   ) { }
 
-  item$: Observable<any> = this.data.dataItem()
+  item$: Observable<any> = this.acrtivatedRoute.params
     .pipe(
-      tap(_item => {
-        console.log(_item);
-        this.form = new FormGroup({
-          name: new FormControl(_item.name, [Validators.required, Validators.maxLength(100)]),
-          brief: new FormControl(_item.brief, [Validators.maxLength(300)]),
-          description: new FormControl(_item.description, [Validators.required]),
-        });
-      })
+      switchMap(_params => this.regionRest.getOne(_params['regionId'])
+        .pipe(
+          tap(_item => {
+            this.form = new FormGroup({
+              id: new FormControl(_item.id),
+              name: new FormControl(_item.name, [Validators.required, Validators.maxLength(100)]),
+              brief: new FormControl(_item.brief, [Validators.maxLength(300)]),
+              description: new FormControl(_item.description, [Validators.required]),
+            });
+          })
+        )
+      ),
     );
+
 
   submit() {
     this.formState = { state: State.InProgress };
-    console.log(this.form.value);
 
-    setTimeout(() => {
-      this.formState = { state: State.Success, msg: 'SUCCESS' };
+    this.regionRest.put(this.form.value, this.form.value.id)
+      .pipe(
+        take(1),
+      )
+      .subscribe({
+        next: _item => {
+          this.formState = { state: State.Success, msg: 'Успешно обновлено.' };
 
-      setTimeout(() => {
-        this.router.navigate(['admin']);
-      }, 1000);
-    }, 2000);
+          setTimeout(() => {
+            this.router.navigate(['admin']);
+          }, 3000);
+        },
+        error: err => {
+          this.formState = { state: State.Error, msg: err?.['message'] };
+        }
+      }
+      );
+
+    // setTimeout(() => {
+    //   this.formState = { state: State.Success, msg: 'SUCCESS' };
+
+    //   setTimeout(() => {
+    //     this.router.navigate(['admin']);
+    //   }, 1000);
+    // }, 2000);
   }
 
 }

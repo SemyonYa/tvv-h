@@ -1,0 +1,20 @@
+<ng-container *ngIf="regions$ |async as regions">
+    <div *ngIf="region$ |async as region; else inProgress" class="wrap col" @titleAnimation>
+        <h2>
+            <a [routerLink]="['/admin', 'regions']"> Регионы </a>
+            <span> / </span>
+            <a [routerLink]="['/admin', 'regions', region.id, 'places']"> {{region.name}}:
+                Населенные
+                пункты </a>
+            <span> / </span>
+            Добавить населенный пункт
+        </h2>
+
+        <app-place-form [regions]="regions" [regionId]="region.id" [formState]="formState" (onSubmit)="submit($event)">
+        </app-place-form>
+    </div>
+</ng-container>
+
+<ng-template #inProgress>
+    <in-progress></in-progress>
+</ng-template>

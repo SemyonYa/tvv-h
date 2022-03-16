@@ -1,15 +1,19 @@
-<div class="wrap col" @titleAnimation>
+<div *ngIf="place$ | async as place" class="wrap col" @titleAnimation>
     <h2>
         <a [routerLink]="['/admin', 'regions']"> Регионы </a>
         <span> / </span>
-        <a [routerLink]="['/admin', 'regions', '[RegionID]', 'places']"> [Region name]: Населенные пункты </a>
+        <a [routerLink]="['/admin', 'regions', place.regionId, 'places']"> {{place.regionName}}: Населенные пункты </a>
         <span> / </span>
-        [Place name]: Проекты
+        {{place.name}}: Проекты
     </h2>
 
+    <div class="row">
+        <button [routerLink]="['add']"> Добавить </button>
+    </div>
+
     <table>
-        <tr *ngFor="let p of projects$ |async">
-            <td> Project {{p.name}} </td>
+        <tr *ngFor="let p of place.projects">
+            <td> {{p.name}} </td>
             <td>
                 <a [routerLink]="[p.id]"> Редактировать </a>
             </td>
@@ -22,4 +26,7 @@
         </tr>
     </table>
 
+    <div *ngIf="!place.projects.length" class="msg warning">
+        Список пуст
+    </div>
 </div>
