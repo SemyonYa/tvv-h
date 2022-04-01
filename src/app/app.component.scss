@@ -1,102 +1,86 @@
 .wrap {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    gap: 0;
-    // border: solid 1px red;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  gap: 0;
+  // border: solid 1px red;
 
-    & > * {
+  & > * {
+  }
+
+  header {
+    flex: 0 1 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px var(--gap);
+
+    img.logo {
+      height: 32px;
+      cursor: pointer;
     }
 
-    header {
-        flex: 0 1 60px;
-        display: flex;
-        justify-content: space-between;
+    input.search {
+      width: calc(var(--c_1) * 4 + var(--gap) * 3);
+      cursor: pointer;
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px var(--gap);
+
+    a {
+      color: var(--color-grey);
+      padding: 8px 12px;
+      line-height: 1;
+      cursor: pointer;
+
+      &.back-btn {
         align-items: center;
-        padding: 14px var(--gap);
+        line-height: 1;
+        gap: 10px;
 
-        img.logo {
-            height: 32px;
-            cursor: pointer;
+        img {
+          height: 14px;
+          aspect-ratio: 1;
+          font-size: 12px;
         }
+      }
+    }
+  }
 
-        input.search {
-            background: var(--color-back);
-            border: 1px solid var(--color-grey);
-            border-radius: 4px;
-            padding: 0 8px;
-            height: 32px;
-            font-size: 12px;
-            line-height: 1;
-            width: calc(var(--c_1) * 4 + var(--gap) * 3);
-            // min-width: 300px;
+  main {
+    // display: block;
+    flex: 0 1 calc(100vh - 86px);
+    // padding: 0 var(--gap);
+    // border: solid 4px blue;
+    overflow-y: hidden;
 
-            background-image: url("/assets/icons/search.svg");
-            background-position: calc(100% - 9px) center;
-            background-repeat: no-repeat;
-            background-size: 20px;
-
-            &::placeholder {
-                color: var(--color-grey);
-            }
-        }
+    &::after,
+    &::before {
+      content: "";
+      position: fixed;
+      right: 0;
+      left: 0;
+      height: 16px;
+      z-index: 2;
     }
 
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px var(--gap);
-
-        a {
-            color: var(--color-grey);
-            padding: 8px 12px;
-            line-height: 1;
-            cursor: pointer;
-
-            &.back-btn {
-                align-items: center;
-                line-height: 1;
-                gap: 10px;
-
-                img {
-                    height: 14px;
-                    aspect-ratio: 1;
-                    font-size: 12px;
-                }
-            }
-        }
+    &::before {
+      height: 12px;
+      top: 108px;
+      background: linear-gradient(180deg, var(--color-back), transparent);
     }
 
-    main {
-        // display: block;
-        flex: 0 1 calc(100vh - 86px);
-        // padding: 0 var(--gap);
-        // border: solid 4px blue;
-        overflow-y: hidden;
-
-        &::after,
-        &::before {
-            content: "";
-            position: fixed;
-            right: 0;
-            left: 0;
-            height: 16px;
-            z-index: 2;
-        }
-
-        &::before {
-            height: 12px;
-            top: 108px;
-            background: linear-gradient(180deg, var(--color-back), transparent);
-        }
-
-        &::after {
-            bottom: 0px;
-            // height: 16px;
-            background: linear-gradient(0deg, white, transparent);
-        }
+    &::after {
+      bottom: 0px;
+      // height: 16px;
+      background: linear-gradient(0deg, white, transparent);
     }
+  }
 }

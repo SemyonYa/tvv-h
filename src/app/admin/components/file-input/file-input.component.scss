@@ -33,6 +33,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  z-index: 2;
 
   .library {
     width: min(100%, 960px);
@@ -42,6 +43,10 @@ button {
     margin-bottom: 40px;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
+  }
+
+  .thumbs {
+    flex-wrap: wrap;
   }
 }
 

@@ -1,15 +1,4 @@
 <div class="wrap col" @titleAnimation>
-    <h2> Информация на главной </h2>
-    <table>
-        <tr>
-            <td>
-                <a [routerLink]="['/admin', 'regions', 'info-edit']"> Редактировать </a>
-            </td>
-        </tr>
-    </table>
-
-    <hr>
-
     <h2> Регионы </h2>
 
     <table *ngIf="regions$ |async as regions; else inProgress">
@@ -29,6 +18,28 @@
             <div class="name"></div>
         </li>
     </ul>
+
+    <hr>
+
+    <h2> Информация на главной </h2>
+    <table>
+        <tr>
+            <td>
+                <a [routerLink]="['/admin', 'regions', 'info-edit']"> Редактировать </a>
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2> Менеджер картинок </h2>
+    <table>
+        <tr>
+            <td>
+                <a [routerLink]="['/admin', 'regions', 'image-manager']"> Управлять TODO: </a>
+            </td>
+        </tr>
+    </table>
 </div>
 
 

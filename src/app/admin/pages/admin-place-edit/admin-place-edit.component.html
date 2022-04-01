@@ -7,49 +7,9 @@
         {{ place.name }}
     </h2>
 
-    <app-place-form [place]="place" [regions]="regions$ |async" [formState]="formState" (onSubmit)="submit($event)">
+    <app-place-form [imageRest]="imageRest" [place]="place" [regions]="regions$ |async" [formState]="formState"
+        (onSubmit)="submit($event)">
     </app-place-form>
-
-    <!-- <form *ngIf="(form && (regions$ |async)); else inProgress" [formGroup]="form" (ngSubmit)="submit()" class="col">
-
-        <div class="form-item">
-            <label> Регион <strong> * </strong> </label>
-            <select formControlName="regionId">
-                <option *ngFor="let r of regions$ |async" [value]="r.id"> {{r.name}} </option>
-            </select>
-        </div>
-
-        <div class="form-item">
-            <label> Наименование <strong> * </strong> </label>
-            <input type="text" formControlName="name">
-        </div>
-        <div class="form-item">
-            <label> Краткое описание </label>
-            <textarea formControlName="brief" rows="6"></textarea>
-        </div>
-        <div class="form-item">
-            <label> Полное описание <strong> * </strong> </label>
-            <textarea formControlName="description" rows="6"></textarea>
-        </div>
-
-        <div class="form-item">
-            <label> Изображение (герб) </label>
-            <file-input [imageId]="place.imageId" [imageName]="place.image.medium" [showImageOnSelect]="true"
-                (onSelect)="onImageSelected($event)">
-            </file-input>
-        </div>
-
-
-        <button type="submit" [disabled]="form.invalid || formState.state === State.InProgress">
-            <ng-container *ngIf="formState.state !== State.InProgress"> Сохранить </ng-container>
-            <ng-container *ngIf="formState.state === State.InProgress">
-                <in-progress [size]="16"></in-progress>
-            </ng-container>
-        </button>
-
-        <form-state [formState]="formState"></form-state>
-
-    </form> -->
 </div>
 
 <ng-template #inProgress>

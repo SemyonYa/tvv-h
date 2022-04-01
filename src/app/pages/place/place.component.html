@@ -1,11 +1,11 @@
 <div *ngIf="place$ |async as place; else inProgress" class="wrap row" @titleAnimation>
     <div class="left col">
         <a *ngFor="let project of place.projects" [routerLink]="['/project', project.id]" class="project row">
-            <img [src]="'/assets/fake/category' + project.id + '.jpg'" alt="PROJECT_PICTURE">
+            <img [src]="getMainImage(project?.images?.after, project.mainImageId, project.projectTypeId).large"
+                alt="PROJECT_PICTURE">
             <div class="info col">
                 <p class="name"> {{project.name}} </p>
                 <p> {{project.brief}}.</p>
-                <p *ngFor="let p of project.description.split('\n')"> {{p}}</p>
             </div>
         </a>
     </div>
@@ -15,16 +15,7 @@
             <h1> {{place.name}} </h1>
         </div>
         <div class="text col">
-            <p class="indented"> {{place.description}} </p>
-            <p class="indented">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptas illo totam dolores explicabo
-                asperiores.
-            </p>
-            <p class="indented">
-                Earum eaque rerum atque amet ipsa provident tenetur molestiae laborum exercitationem reiciendis
-                mollitia
-                rem!
-            </p>
+            <p *ngFor="let p of place.description.split('\n')" class="indented"> {{p}} </p>
         </div>
     </div>
 </div>

@@ -1,0 +1,56 @@
+<div class="wrap col" @libraryAnimation>
+    <div class="row top">
+        <h2>
+            Поиск по карте
+            <!-- <img src="/assets/icons/search.svg" alt="SEARCH"> -->
+        </h2>
+
+        <button type="button" (click)="close()">
+            Закрыть
+            <!-- <img src="/assets/icons/close-red.svg" alt="CLOSE"> -->
+        </button>
+    </div>
+
+    <input #search type="text" class="search" autofocus>
+
+    <div *ngIf="result$ |async as result" class="list col" @pageAnimation>
+        <ng-container *ngIf="formState.state === State.Success">
+            <div class="projects col">
+                <h3 *ngIf="result.projects.length"> Проекты: </h3>
+                <ul>
+                    <li *ngFor="let project of result.projects">
+                        <a (click)="goTo('project/' + project.id)">
+                            {{project.name}} ({{project.regionName}}, {{project.placeName}})
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="places">
+                <h3 *ngIf="result.places.length"> Населенные пункты: </h3>
+
+                <ul>
+                    <li *ngFor="let place of result.places">
+                        <a (click)="goTo('place/' + place.id)">
+                            {{place.name}} ({{place.regionName}})
+                        </a>
+                    </li>
+                </ul>
+                <!-- <div *ngFor="let place of result.places" class="places-item">
+                    {{place.name}}
+                </div> -->
+            </div>
+
+            <div *ngIf="!result.places.length && !result.projects.length" class="msg warning">
+                По запросу ничего не найдено
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="formState.state === State.InProgress">
+            <in-progress></in-progress>
+        </ng-container>
+
+        <ng-container *ngIf="formState.state === State.Error">
+            <div class="msg danger"> {{formState.msg}} </div>
+        </ng-container>
+    </div>
+</div>

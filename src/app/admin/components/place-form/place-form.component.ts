@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Image } from 'src/models/image';
 import { Place } from 'src/models/place';
 import { Region } from 'src/models/region';
+import { ImageRestService } from 'src/services/rest/image.rest.service';
 import { FormState, State } from '../form-state/form-state.component';
 
 @Component({
@@ -26,6 +27,8 @@ export class PlaceFormComponent implements OnInit {
     this._regionId = value;
     this.generateForm();
   }
+
+  @Input() imageRest: ImageRestService;
 
   @Output() onSubmit = new EventEmitter<Partial<Place>>();
 

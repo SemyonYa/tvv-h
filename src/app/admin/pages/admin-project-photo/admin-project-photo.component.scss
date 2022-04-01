@@ -1,17 +1,27 @@
 .list {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 
-    .item {
-        position: relative;
+  .item {
+    position: relative;
 
-        .thumb-delete {
-            position: absolute;
-            top: 6px;
-            right: 6px;
-            width: 12px;
-            aspect-ratio: 1;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.7), transparent 75%, transparent);
-            cursor: pointer;
-        }
+    .thumb.is-main {
+      border: solid 3px var(--color-success);
+      padding: 2px;
     }
+
+    .thumb-delete {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 12px;
+      aspect-ratio: 1;
+      background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.7),
+        transparent 75%,
+        transparent
+      );
+      cursor: pointer;
+    }
+  }
 }

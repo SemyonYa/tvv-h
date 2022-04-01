@@ -3,11 +3,11 @@
         <div class="left">
             <div class="nav-name row">
                 <img *ngIf="!project.prevId" src="/assets/icons/prev.svg" class="inactive" alt="PREV">
-                <img *ngIf="project.prevId" [routerLink]="['project', project.prevId]" src="/assets/icons/prev.svg"
+                <img *ngIf="project.prevId" [routerLink]="['/project', project.prevId]" src="/assets/icons/prev.svg"
                     alt="PREV">
-                <div class="name"> {{project.name}} </div>
-                <img *ngIf="!project.prevId" src="/assets/icons/next.svg" class="inactive" alt="NEXT">
-                <img *ngIf="project.prevId" [routerLink]="['project', project.nextId]" src="/assets/icons/next.svg"
+                <div class="name center"> {{project.name}} </div>
+                <img *ngIf="!project.nextId" src="/assets/icons/next.svg" class="inactive" alt="NEXT">
+                <img *ngIf="project.nextId" [routerLink]="['/project', project.nextId]" src="/assets/icons/next.svg"
                     alt="NEXT">
             </div>
         </div>
@@ -31,22 +31,24 @@
                     <!-- <ng-template *ngIf="!product.images?.length" swiperSlide>
                       <img src="/assets/images/north.jpg" alt="">
                     </ng-template> -->
-                    <ng-template *ngFor="let image of images" swiperSlide>
+                    <ng-template *ngFor="let image of project.images?.before" swiperSlide>
                         <img class="swiper-image" [src]="image.large" alt="">
                     </ng-template>
                 </swiper>
-                <img src="/assets/icons/qwe.svg" alt="FULL_SCREEN" class="expand" (click)="goToFullScreen()">
+                <img src="/assets/icons/qwe.svg" alt="FULL_SCREEN" class="expand"
+                    (click)="goToFullScreen(project.images?.before)">
             </div>
             <div *ngIf="isAfter" class="swiper-wrap" @titleAnimation>
                 <swiper #swiperRef [config]="config">
                     <!-- <ng-template *ngIf="!product.images?.length" swiperSlide>
                       <img src="/assets/images/north.jpg" alt="">
                     </ng-template> -->
-                    <ng-template *ngFor="let image of images" swiperSlide>
+                    <ng-template *ngFor="let image of project.images?.after" swiperSlide>
                         <img class="swiper-image" [src]="image.large" alt="">
                     </ng-template>
                 </swiper>
-                <img src="/assets/icons/qwe.svg" alt="FULL_SCREEN" class="expand" (click)="goToFullScreen()">
+                <img src="/assets/icons/qwe.svg" alt="FULL_SCREEN" class="expand"
+                    (click)="goToFullScreen(project.images?.after)">
             </div>
         </div>
         <div class="right col">

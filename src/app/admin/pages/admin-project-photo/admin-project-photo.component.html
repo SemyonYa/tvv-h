@@ -2,23 +2,32 @@
     <h2>
         <a [routerLink]="['/admin', 'regions']"> Регионы </a>
         <span> / </span>
-        <a [routerLink]="['/admin', 'regions', project.regionId, 'places']"> {{project.regionName}}: Населенные пункты
+        <a [routerLink]="['/admin', 'regions', project.regionId, 'places']">
+            {{project.regionName}}: Населенные пункты
         </a>
         <span> / </span>
         <a [routerLink]="['/admin', 'regions', project.regionId, 'places', project.placeId, 'projects']">
             {{project.placeName}}: Проекты
         </a>
         <span> / </span>
-        {{project.name}}: {{(timeParam$ |async) === 'before' ? 'Фото до' : 'Фото после'}}
+        {{project.name}}: {{params['time'] === 'before' ? 'Фото до' : 'Фото после'}}
     </h2>
 
     <div class="list row">
 
-        <div *ngFor="let image of images$ |async" class="item">
-            <img [src]="image.thumb" alt="THUMB" class="thumb">
-            <img src="/assets/icons/close-red.svg" alt="CLOSE" class="thumb-delete">
+        <div *ngFor="let image of project.images[time]; let index = index" class="item">
+            <img [src]="image.thumb" alt="THUMB"
+                [ngClass]="{'thumb': true, 'is-main': (image.id === project.mainImageId) || (!project.mainImageId && index === 0) }"
+                (click)="setMain(image.id)">
+            <img src="/assets/icons/close-red.svg" alt="CLOSE" class="thumb-delete"
+                (click)="removePhotoFromProject(image.id)">
         </div>
     </div>
 
-    <file-input [showImageOnSelect]="false"></file-input>
+    <div *ngIf="!project.images[time]?.length" class="msg warning">
+        Фото пока нет
+    </div>
+
+    <file-input [imageRest]="imageRest" [showImageOnSelect]="false" (onSelect)="addSelectedPhoto($event)"
+        (onImagesLoaded)="addLoadedPhotos($event)"></file-input>
 </div>

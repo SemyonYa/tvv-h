@@ -6,6 +6,7 @@ import { Item } from 'src/models/item';
 import { Place } from 'src/models/place';
 import { Project } from 'src/models/project';
 import { Region } from 'src/models/region';
+import { SearchResponse } from 'src/models/search-response';
 
 @Injectable({
   providedIn: 'root'
@@ -55,23 +56,30 @@ export class DataService {
   getProject(projectId: number): Observable<Project> {
     return this.http.get<Project>(`${this.url}/projects/${projectId}`);
   }
-  
+
   getProjectTypes(): Observable<Item[]> {
     return this.http.get<Item[]>(`${this.url}/project-types`);
+  }
+
+  search(value: string): Observable<SearchResponse> {
+    return this.http.get<SearchResponse>(
+      `${this.url}/search`,
+      { params: new HttpParams().set('value', value) }
+    )
   }
 
 
   ///
   /// TODO: FAKE
   ///
-  data(): Observable<{ id: number, name: string, brief: string, description: string }[]> {
-    return of([1, 2, 3, 4, 5].map(i => ({ id: i, name: `Name ${i}`, brief: `Brief ${i}`, description: `Description ${i}` })));
-  }
+  // data(): Observable<{ id: number, name: string, brief: string, description: string }[]> {
+  //   return of([1, 2, 3, 4, 5].map(i => ({ id: i, name: `Name ${i}`, brief: `Brief ${i}`, description: `Description ${i}` })));
+  // }
 
-  dataItem(): Observable<{ id: number, name: string, brief: string, description: string }> {
-    return of({ id: 1000000, name: `Name test`, brief: `Brief test`, description: `Description test` })
-      .pipe(
-        delay(1000),
-      );
-  }
+  // dataItem(): Observable<{ id: number, name: string, brief: string, description: string }> {
+  //   return of({ id: 1000000, name: `Name test`, brief: `Brief test`, description: `Description test` })
+  //     .pipe(
+  //       delay(1000),
+  //     );
+  // }
 }

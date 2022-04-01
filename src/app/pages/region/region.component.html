@@ -1,11 +1,10 @@
 <div *ngIf="region$ |async as region; else inProgress" class="wrap row" @titleAnimation>
     <div class="left col">
         <a *ngFor="let place of region.places" [routerLink]="['/place', place.id]" class="place row">
-            <img src="/assets/images/gerb.png" alt="GERB">
+            <img [src]="place.image.medium" alt="GERB">
             <div class="info col">
                 <p> {{place.name}} </p>
                 <p> {{place.brief}} </p>
-                <!-- <pre> {{place.projectTypes |json }} </pre> -->
                 <div class="object-types row">
                     <div *ngFor="let pt of place.projectTypes" class="object-types-item row">
                         <div class="circle x{{pt.id}}"></div>
@@ -14,7 +13,7 @@
                 </div>
             </div>
         </a>
-        <a [routerLink]="['/place']" *ngFor="let item of [1,2,3,4,5,6,7]" class="place row">
+        <!-- <a [routerLink]="['/place']" *ngFor="let item of [1,2,3,4,5,6,7]" class="place row">
             <img src="/assets/images/gerb.png" alt="GERB">
             <div class="info col">
                 <p> [PLACE NAME] </p>
@@ -26,7 +25,7 @@
                     </div>
                 </div>
             </div>
-        </a>
+        </a> -->
     </div>
     <div class="right col">
         <div class="title col">
@@ -34,16 +33,7 @@
             <h1> {{region.name}} </h1>
         </div>
         <div class="text col">
-            <p class="indented"> {{region.description}} </p>
-
-            <p class="indented">
-                Earum eaque rerum atque amet ipsa provident tenetur molestiae laborum exercitationem reiciendis mollitia
-                rem
-            </p>
-            <p class="indented">
-                repellat soluta perspiciatis laudantium sit dolore, ipsam architecto? Dolor commodi sunt, similique
-                repellendus aperiam exercitationem animi quia inventore rem rerum ex!
-            </p>
+            <p *ngFor="let p of region.description.split('\n')" class="indented"> {{p}} </p>
         </div>
 
     </div>

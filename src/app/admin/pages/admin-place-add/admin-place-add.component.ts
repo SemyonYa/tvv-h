@@ -5,6 +5,7 @@ import { titleAnimation } from 'src/animations/title.animation';
 import { Place } from 'src/models/place';
 import { Region } from 'src/models/region';
 import { DataService } from 'src/services/data.service';
+import { ImageRestService } from 'src/services/rest/image.rest.service';
 import { PlaceRestService } from 'src/services/rest/place.rest.service';
 import { FormState, State } from '../../components/form-state/form-state.component';
 
@@ -21,6 +22,7 @@ export class AdminPlaceAddComponent {
   constructor(
     private data: DataService,
     private placeRest: PlaceRestService,
+    public imageRest: ImageRestService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
   ) { }

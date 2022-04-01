@@ -1,8 +1,9 @@
 <div class="wrap col">
   <header>
-    <img [routerLink]="['/']" src="/assets/images/logo.png" class="logo" alt="LOGO">
+    <img [routerLink]="['/']" src="/assets/icons/logo-tvv.svg" class="logo" alt="LOGO">
 
-    <input type="text" class="search" placeholder="Начните вводить наименование">
+    <input [routerLink]="['', {outlets: {'search': ['search']}}]" type="text" readonly class="search"
+      placeholder="Поиск по карте...">
   </header>
   <nav *ngIf="navVisible$ |async" @titleAnimation>
     <a class="back-btn row" (click)="back()">
@@ -18,3 +19,5 @@
 
   <div class="gradient"></div>
 </div>
+
+<router-outlet name="search"></router-outlet>

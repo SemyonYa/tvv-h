@@ -48,11 +48,11 @@ export class ProjectComponent {
     );
 
 
-  goToFullScreen() {
+  goToFullScreen(images: Image[]) {
     const activeIndex = this.swiperElem.swiperRef.activeIndex;
 
     this.galeryModalRef = this.vcRef.createComponent(GaleryModalComponent);
-    this.galeryModalRef.instance.images = this.images;
+    this.galeryModalRef.instance.images = images;
     this.galeryModalRef.instance.onClose = this.slideTo
     this.galeryModalRef.instance.config.initialSlide = activeIndex
   }

@@ -13,6 +13,7 @@ import { RegionComponent } from './pages/region/region.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GaleryModalComponent } from './components/galery-modal/galery-modal.component';
 import { InProgressComponent } from './components/in-progress/in-progress.component';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { InProgressComponent } from './components/in-progress/in-progress.compon
 
     GaleryModalComponent,
     InProgressComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

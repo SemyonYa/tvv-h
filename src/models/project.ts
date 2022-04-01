@@ -13,6 +13,7 @@ export class Project {
         before: Image[],
         after: Image[],
     };
+    mainImageId: number;
 
     regionId: number;
     regionName: string;

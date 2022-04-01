@@ -22,8 +22,8 @@
 
     <div class="form-item">
         <label> Изображение (герб) </label>
-        <file-input [imageId]="place?.imageId" [imageName]="place?.image?.medium" [showImageOnSelect]="true"
-            (onSelect)="onImageSelected($event)">
+        <file-input [imageRest]="imageRest" [imageId]="place?.imageId" [imageName]="place?.image?.medium"
+            [showImageOnSelect]="true" (onSelect)="onImageSelected($event)">
         </file-input>
     </div>
 

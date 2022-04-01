@@ -1,0 +1,1 @@
+export type TimeParamType = 'before' | 'after';

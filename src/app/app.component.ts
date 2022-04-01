@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, ComponentRef, ViewContainerRef } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter, map, Observable } from 'rxjs';
+import { filter, map, Observable, tap } from 'rxjs';
 import { titleAnimation } from 'src/animations/title.animation';
 
 @Component({
@@ -20,6 +20,7 @@ export class AppComponent {
 
   navVisible$: Observable<boolean> = this.router.events
     .pipe(
+      // tap(x => console.log(x)),
       filter(e => e instanceof NavigationEnd),
       map(e => e as NavigationEnd),
       map(e => e.url !== '/' && e.urlAfterRedirects !== '/'),

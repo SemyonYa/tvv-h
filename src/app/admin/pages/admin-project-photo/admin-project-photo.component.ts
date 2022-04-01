@@ -1,8 +1,8 @@
-import { HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map, Observable, of, share, shareReplay, switchMap, tap } from 'rxjs';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable, switchMap, tap } from 'rxjs';
 import { titleAnimation } from 'src/animations/title.animation';
+import { TimeParamType } from 'src/models/helpers/time-param.type';
 import { Image } from 'src/models/image';
 import { Project } from 'src/models/project';
 import { DataService } from 'src/services/data.service';
@@ -14,76 +14,52 @@ import { ImageRestService } from 'src/services/rest/image.rest.service';
   styleUrls: ['./admin-project-photo.component.scss'],
   animations: [titleAnimation],
 })
-export class AdminProjectPhotoComponent implements OnInit {
+export class AdminProjectPhotoComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private imageRest: ImageRestService,
+    public imageRest: ImageRestService,
     private data: DataService,
   ) { }
 
-  private _params$ = this.activatedRoute.params
+  params: Params = this.activatedRoute.snapshot.params;
+  time: TimeParamType = this.params['time'] as TimeParamType;
 
-  timeParam$: Observable<TimeParamType> = this._params$
+  project$: Observable<Project> = this.data.getProject(this.params['projectId'])
     .pipe(
       tap(x => console.log(x)),
-      map(ps => ps['time'] as TimeParamType)
     );
 
-  project$: Observable<Project> = this._params$
-    .pipe(
-      switchMap(_params => this.data.getProject(+_params['projectId'])),
-      shareReplay(1),
-      tap(x => console.log(x)),
-    );
-
-  images$: Observable<Image[]> = this.timeParam$
-    .pipe(
-      switchMap(_time => this.project$
-        .pipe(
-          map(_project => _project.images[_time]),
-        )
-      ),
-    );
-
-  // imagesBefore$: Observable<Image[]> = this.project$
-  //   .pipe(
-  //     map(_project => _project.images.before),
-  //   );
-  // imagesAfter$: Observable<Image[]> = this.project$
-  //   .pipe(
-  //     map(_project => _project.images.after),
-  //   );
-
-  // images2$: Observable<Image[]> = this._params$
-  //   .pipe(
-  //     switchMap(
-  //       _params => of([1, 2, 3, 4, 5, 6, 7])
-  //         .pipe(
-  //           map(
-  //             _items => _items.map(_i =>
-  //               ({ id: _i, thumb: `assets/fake/category${_i}.jpg`, large: `assets/fake/category${_i}.jpg` } as Image)
-  //             )
-  //           )
-  //         )
-  //     )
-  //   );
-
-  // images$: Observable<Image[]> = this._params$
-  //   .pipe(
-  //     switchMap(
-  //       _params => this.imageRest
-  //         .getAll(
-  //           new HttpParams()
-  //             .set('projectId', _params['projectId'])
-  //             .set('time', _params['time'])
-  //         )
-  //     )
-  //   );
-
-  ngOnInit(): void {
+  addSelectedPhoto(image: Image): void {
+    this.project$ = this.imageRest.addPhotosToProject(+this.params['projectId'], [image.id], this.params['time'])
+      .pipe(
+        tap(x => console.log(x)),
+        switchMap(_ => this.data.getProject(this.params['projectId'])),
+      );
   }
 
+  addLoadedPhotos(images: Image[]): void {
+    this.project$ = this.imageRest.addPhotosToProject(+this.params['projectId'], images.map(_i => _i.id), this.params['time'])
+      .pipe(
+        switchMap(_ => this.data.getProject(this.params['projectId'])),
+        tap(x => console.log(x)),
+      );
+  }
+
+  removePhotoFromProject(imageId: number) {
+    this.project$ = this.imageRest.removePhotoFromProject(+this.params['projectId'], imageId)
+      .pipe(
+        switchMap(_ => this.data.getProject(this.params['projectId'])),
+      )
+  }
+
+  setMain(imageId: number) {
+    if (this.params['time'] === 'after')
+      this.project$ = this.imageRest.setMain(this.params['projectId'], imageId)
+        .pipe(
+          switchMap(_ => this.data.getProject(this.params['projectId'])),
+          tap(x => console.log(x)),
+        );
+  }
 }
 
-export type TimeParamType = 'before' | 'after';

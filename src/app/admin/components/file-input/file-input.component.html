@@ -13,20 +13,23 @@
     <img src="/assets/icons/upload.svg" alt="UPLOAD">
   </button>
 </div>
-<input #file type="file" multiple accept=".png, .jpg, .jpeg" (change)="onChange($event)">
+<input #file type="file" multiple accept=".png, .jpg, .jpeg">
+<!-- (change)="onChange($event)" -->
 
 <div *ngIf="libraryShown" class="library-back" @libraryAnimation>
-  <div class="library">
+  <div class="library col">
     <h3 class="row">
       Выбор изображения
       <div class="close-uploaded">
         <span (click)="hideLibrary()" tabindex="0" role="button">Закрыть</span>
       </div>
     </h3>
-    <div *ngIf="(images$ |async) || error; else inProgress" class="thumbs">
-      <img *ngFor="let image of images$ |async" [src]="image.thumb"
-        [ngClass]="{'thumb': true, 'selected': image.id === selectedImage?.id}" alt="" (click)="selectImage(image)">
-    </div>
+    <ng-container *ngIf="(images$ |async) as images">
+      <div *ngIf="images || error; else inProgress" class="thumbs row">
+        <img *ngFor="let image of images" [src]="image.thumb"
+          [ngClass]="{'thumb': true, 'selected': image.id === selectedImage?.id}" alt="" (click)="selectImage(image)">
+      </div>
+    </ng-container>
 
     <p *ngIf="error" class="msg error"> {{error}} </p>
   </div>
